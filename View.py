@@ -29,11 +29,11 @@ class View:
         vector1 = self.c.create_line([260,260], vec.getGUIVector1(), tag='first')
         self.root.update_idletasks()
         self.root.update()
+        self.hasBeenDrawnOn = True
 
     def unDrawVector(self):
         if(self.hasBeenDrawnOn):
             self.c.delete('first')
-            self.c.delete('second')
         
     def waitForClick(self):
         self.root.update_idletasks()
@@ -47,7 +47,6 @@ class View:
         self.drawVector(self.vec)
         #Set to true to let other methods know the canvas has been
         #drawn on
-        self.hasBeenDrawnOn = True
 
     def rotateVector(self):
         self.unDrawVector()
@@ -56,22 +55,27 @@ class View:
         self.drawVector(self.vec)
 
     def transformGrid(self):
-        x1 = int(self.e4.get())
-        y1 = int(self.e5.get())
-        x2 = int(self.e6.get())
-        y2 = int(self.e7.get())
-        transformMat = np.asarray((x1,y1),(x2,y2))
-        base1 = np.asarray((0,1))
-        base2 = np.asarray((1,0))
+        self.unDrawVector()
+        x1 = float(self.e4.get())
+        y1 = float(self.e5.get())
+        x2 = float(self.e6.get())
+        y2 = float(self.e7.get())
+        transformMat = np.asmatrix([[x1,y1],[x2,y2]])
+        base1 = np.asmatrix((0,1))
+        base1 = base1.transpose()
+        base2 = np.asmatrix((1,0))
+        base2 = base2.transpose()
         base1 = transformMat * base1
         base2 = transformMat * base2
 
         #To list
         base1 = base1.tolist()
         base2 = base2.tolist()
-        
-        self.drawVector(Vector(vector1=(base1[0],base1[1])))
-        self.drawVector(Vector(vector1=(base2[0],base2[1])))
+
+        #Multiplied each component by 20 because graph has grids that are
+        #20px by 20px instead of 1x1 unit squares like in regular math
+        self.drawVector(Vector(vector1=(20*base1[0][0],20*base1[1][0])))
+        self.drawVector(Vector(vector1=(20*base2[0][0],20*base2[1][0])))
     
     def createGUI(self):
         self.root = tk.Tk()
