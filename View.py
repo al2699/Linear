@@ -5,9 +5,16 @@ import numpy as np
 
 class View:
 
+    """
+    Default constructor.
+    """
     def __init__(self):
         self.createGUI()
 
+    """
+    GUI-Startup method. Creates a cartesian grid with squares of 20px^2.
+    This is binded to the startup in main GUI creation method: createGUI()
+    """
     def create_grid(self, event=None):
         w = self.c.winfo_width()
         h = self.c.winfo_height()
@@ -24,13 +31,19 @@ class View:
         self.c.create_line([(260,0),(260,500)],tag='x-axis',fill='blue')
         #Create the y-axis
         self.c.create_line([(0,260),(500,260)],tag='y-axis',fill='blue')
-    
+
+    """
+    Does action of drawing a given vector on the canvas
+    vec: a Vector object which contains the vector to be drawn
+    """
     def drawVector(self, vec):
         vector1 = self.c.create_line([260,260], vec.getGUIVector1(), tag='first')
         self.root.update_idletasks()
         self.root.update()
         self.hasBeenDrawnOn = True
-
+    """
+    Deletes the vector off the GUI canvas
+    """
     def unDrawVector(self):
         if(self.hasBeenDrawnOn):
             self.c.delete('first')
@@ -39,6 +52,9 @@ class View:
         self.root.update_idletasks()
         self.root.update()
 
+    """
+    Handler for the graph button on GUI
+    """
     def graphVector(self):
         self.unDrawVector()
         x = int(self.e1.get()) * 20
@@ -54,6 +70,10 @@ class View:
         self.vec.rotateBy(degrees)
         self.drawVector(self.vec)
 
+    """
+    Transforms the basis vectors in R2 using the GUI inputted
+    linear transformation matrix
+    """
     def transformGrid(self):
         self.unDrawVector()
         x1 = float(self.e4.get())
@@ -76,7 +96,19 @@ class View:
         #20px by 20px instead of 1x1 unit squares like in regular math
         self.drawVector(Vector(vector1=(20*base1[0][0],20*base1[1][0])))
         self.drawVector(Vector(vector1=(20*base2[0][0],20*base2[1][0])))
-    
+
+    """
+    EXPERIMENTAL: graphs several n-magnitude vectors in R2 and then transforms
+    them using the GUI inputted linear transformation
+    """
+    def transformGrid2(self):
+        #TODO
+
+    """
+    Sets up the majority of the GUI using various helper methods.
+    This handles the button, input, and label fields as well as the grid
+    creation.
+    """
     def createGUI(self):
         self.root = tk.Tk()
         self.c = tk.Canvas(self.root, height=520, width=520, bg='white')
