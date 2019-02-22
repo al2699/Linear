@@ -11,28 +11,47 @@ class Vector:
     Default construtor takes in coordinates in regular space
     and then keeps the regular coordinates and finds the corresponding
     ordered pair set in GUI coordinaate space.
-    x: x coordinate in regular cartesian coordinates
-    y: y coordinates in regular cartesian coordinates
+    vector: A tuple containing the x and y component of a given vector
+            given in regular cartesian coordinates
     """
     def __init__(self, vector=()):
         self.cartesianVector1 = vector #by definition cartesian vectors
                                       #always start at origin
         self.transformToGUICoordinates()
 
+    """
+    Helper method for transforming the coordinates inputted through the
+    constructor from cartesian coordinates to GUI coordinates. This works
+    by using instance variables so no parameters are needed.
+    """
     def transformToGUICoordinates(self):
         self.startGUICoordinates = (260,260)
         self.endGUICoordinates1 = (self.cartesianVector1[0] + 260,\
                                   260 - self.cartesianVector1[1])
-
+    """
+    Returns the contained/stored vector in cartesian coordiantes
+    """
     def getCartesianVector(self):
         return (self.cartesianVector1)
 
+    """
+    Returns BOTH the coordinates of the tail and head of the stored
+    vector in GUI coordinates
+    """
     def getGUICoordinates(self):
         return (self.startGUICoordinates, self.endGUICoordinates1)
-    
+
+    """
+    Returns only the head coordinates of the stored vector in GUI
+    coordinates
+    """
     def getGUIVector1(self):
         return self.endGUICoordinates1
 
+    """
+    Rotates the stored vector counter-clockwise by the amount of passed in
+    degrees
+    """
     def rotateBy(self, degrees):
         #Convert degrees to radians
         rads = (math.pi/180) * (degrees)

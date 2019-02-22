@@ -3,6 +3,10 @@ from Tkinter import *
 from Vector import Vector
 import numpy as np
 
+"""
+Both View and Controller for the linear transformation visualizer program.
+Model is stored in the Vector class.
+"""
 class View:
 
     """
@@ -65,6 +69,10 @@ class View:
         #Set to true to let other methods know the canvas has been
         #drawn on
 
+    """
+    Handler for the rotate button: takes the vector currently on screen
+    and then rotates it by the amount of degrees inputted by the user
+    """
     def rotateVector(self):
         self.unDrawVector()
         degrees = int(self.e3.get())
@@ -72,8 +80,9 @@ class View:
         self.drawVector(self.vec)
 
     """
-    Transforms the basis vectors in R2 using the GUI inputted
-    linear transformation matrix
+    Creates the set of all possible integer vectors within the grid space
+    and then transforms them using the user-inputted transformation matrix.
+    Finally, the method prints the vector onto the GUI canvas.
     """
     def transformGrid(self):
         self.unDrawVector()
@@ -116,13 +125,6 @@ class View:
                 self.drawVector(v2)
                 self.drawVector(v3)
                 self.drawVector(v4)
-
-    """
-    EXPERIMENTAL: graphs several n-magnitude vectors in R2 and then transforms
-    them using the GUI inputted linear transformation
-    """
-    #def transformGrid2(self):
-        #print('hello')
 
     """
     Sets up the majority of the GUI using various helper methods.
@@ -179,6 +181,11 @@ class View:
 
         self.c.bind('<Configure>', self.create_grid)
         #Can be replaced with the lines
+
+"""
+Main portion which instantiates the GUI class and then places it into its
+infinite loop for input
+"""
 if __name__ == "__main__":
     view = View()
     while True:
