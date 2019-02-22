@@ -10,7 +10,7 @@ class View:
     """
     def __init__(self):
         self.createGUI()
-
+        
     """
     GUI-Startup method. Creates a cartesian grid with squares of 20px^2.
     This is binded to the startup in main GUI creation method: createGUI()
@@ -41,6 +41,7 @@ class View:
         self.root.update_idletasks()
         self.root.update()
         self.hasBeenDrawnOn = True
+        
     """
     Deletes the vector off the GUI canvas
     """
@@ -59,7 +60,7 @@ class View:
         self.unDrawVector()
         x = int(self.e1.get()) * 20
         y = int(self.e2.get()) * 20
-        self.vec = Vector(vector1=(x,y))
+        self.vec = Vector(vector=(x,y))
         self.drawVector(self.vec)
         #Set to true to let other methods know the canvas has been
         #drawn on
@@ -76,33 +77,52 @@ class View:
     """
     def transformGrid(self):
         self.unDrawVector()
+        self.q1IntVectors = []
+        self.q2IntVectors = []
+        self.q3IntVectors = []
+        self.q4IntVectors = []
         x1 = float(self.e4.get())
         y1 = float(self.e5.get())
         x2 = float(self.e6.get())
         y2 = float(self.e7.get())
         transformMat = np.asmatrix([[x1,y1],[x2,y2]])
-        base1 = np.asmatrix((0,1))
-        base1 = base1.transpose()
-        base2 = np.asmatrix((1,0))
-        base2 = base2.transpose()
-        base1 = transformMat * base1
-        base2 = transformMat * base2
 
-        #To list
-        base1 = base1.tolist()
-        base2 = base2.tolist()
-
-        #Multiplied each component by 20 because graph has grids that are
-        #20px by 20px instead of 1x1 unit squares like in regular math
-        self.drawVector(Vector(vector1=(20*base1[0][0],20*base1[1][0])))
-        self.drawVector(Vector(vector1=(20*base2[0][0],20*base2[1][0])))
+        for i in range(0,13):
+            for j in range(0,13):
+                #Q1 vectors
+                v1 = np.asmatrix((i,j))
+                v1 = v1.transpose()
+                v1 = transformMat * v1
+                v1 = Vector(vector=(20*float(v1[0][0]),20*float(v1[1][0])))
+                print("IJ: " + str(i) + " " + str(j))
+                #Q2 vectors
+                v2 = np.asmatrix((-i,j))
+                v2 = v2.transpose()
+                v2 = transformMat * v2
+                v2 = Vector(vector=(20*float(v2[0][0]),20*float(v2[1][0])))
+                #Q3 vectors
+                v3 = np.asmatrix((-i,-j))
+                v3 = v3.transpose()
+                v3 = transformMat * v3
+                v3 = Vector(vector=(20*float(v3[0][0]),float(20*v3[1][0])))
+                #Q4 vectors
+                v4 = np.asmatrix((i,-j))
+                v4 = v4.transpose()
+                v4 = transformMat * v4
+                v4 = Vector(vector=(20*float(v4[0][0]),20*float(v4[1][0])))
+                print("Drawing vectors beginning")
+                print(v1.getCartesianVector())
+                self.drawVector(v1)
+                self.drawVector(v2)
+                self.drawVector(v3)
+                self.drawVector(v4)
 
     """
     EXPERIMENTAL: graphs several n-magnitude vectors in R2 and then transforms
     them using the GUI inputted linear transformation
     """
-    def transformGrid2(self):
-        #TODO
+    #def transformGrid2(self):
+        #print('hello')
 
     """
     Sets up the majority of the GUI using various helper methods.
@@ -112,7 +132,7 @@ class View:
     def createGUI(self):
         self.root = tk.Tk()
         self.c = tk.Canvas(self.root, height=520, width=520, bg='white')
-        self.c.pack(fill=tk.BOTH, expand=True)
+        self.c.pack(fill=tk.BOTH,expand=True)
         #Frame creation for buttons and input
         f = Frame(self.root, height = 50, width = 50)
         inputFrame = Frame(self.root, height=50, width=50)

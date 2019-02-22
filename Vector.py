@@ -14,8 +14,8 @@ class Vector:
     x: x coordinate in regular cartesian coordinates
     y: y coordinates in regular cartesian coordinates
     """
-    def __init__(self, vector1=()):
-        self.cartesianVector1 = vector1 #by definition cartesian vectors
+    def __init__(self, vector=()):
+        self.cartesianVector1 = vector #by definition cartesian vectors
                                       #always start at origin
         self.transformToGUICoordinates()
 
