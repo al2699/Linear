@@ -9,9 +9,9 @@ Linear is a NumPy powered, linear transformation visualizer.
 
 # Features
 
-  - Graph 2D vectors and rotate them
-  [![Image from Gyazo](https://i.gyazo.com/de90a287b68feab1844b1cdec83c2c91.gif)](https://gyazo.com/de90a287b68feab1844b1cdec83c2c91)
-  - Visualize how space is transformed
+- Graph 2D vectors and rotate them
+[![Image from Gyazo](https://i.gyazo.com/de90a287b68feab1844b1cdec83c2c91.gif)](https://gyazo.com/de90a287b68feab1844b1cdec83c2c91)
+- Visualize how space is transformed
 [![Image from Gyazo](https://i.gyazo.com/418d448dfc35ee9f9a6f4c26e2ad4aa3.gif)](https://gyazo.com/418d448dfc35ee9f9a6f4c26e2ad4aa3)
 
 The x,y coordinates take are used for a vector:
