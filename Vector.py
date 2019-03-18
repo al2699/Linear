@@ -2,6 +2,21 @@ import numpy as np
 import math
 
 """
+Helper function for normalizing a vector vector in tuple form
+"""
+def normalizeVector(vector):
+    magReciprocal = 1.0 / getMagnitude(vector)
+    vector = (vector[0] * magReciprocal, vector[1] * magReciprocal)
+    return vector
+        
+"""
+Helper function for getting the magnitude of a vector in tuple form
+"""
+def getMagnitude(vector):
+    return math.sqrt((vector[0] ** 2) + (vector[1] ** 2))
+
+
+""""
 Container for vectors. Can be used to paint vectors
 onto a given GUI canvas.
 """
@@ -18,6 +33,7 @@ class Vector:
         self.cartesianVector1 = vector #by definition cartesian vectors
                                       #always start at origin
         self.transformToGUICoordinates()
+        self.cartesianMagnitude = getMagnitude(vector)
 
     """
     Helper method for transforming the coordinates inputted through the
@@ -68,5 +84,8 @@ class Vector:
         transformedVectors = rotationMatrix * obj
         print(transformedVectors)
         asListVectors = transformedVectors.tolist()
-        self.cartesianVector1 = (asListVectors[0][0], asListVectors[1][0])
+        normalizedVector = normalizeVector((asListVectors[0][0], asListVectors[1][0]))
+        self.cartesianVector1 = (normalizedVector[0] * self.cartesianMagnitude,\
+                                 normalizedVector[1] * self.cartesianMagnitude)
         self.transformToGUICoordinates()
+

@@ -46,6 +46,6 @@ def test_rotation():
     vec.rotateBy(30)
     rotatedVector = vec.getCartesianVector()
     print(rotatedVector)
-    assert rotatedVector[0] == -0.5
-    assert rotatedVector[1] == math.sqrt(3)/2.0
+    assert round(rotatedVector[0]) == round(-0.5)
+    assert round(rotatedVector[1]) == round(math.sqrt(3)/2.0)
     
