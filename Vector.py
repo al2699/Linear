@@ -60,8 +60,8 @@ class Vector:
         obj = obj.transpose()
         print(obj)
         #Creating the rotation matrix
-        rotationMatrix = np.asmatrix(((math.cos(rads),math.sin(rads)),\
-                                     (-1*math.sin(rads),math.cos(rads))))
+        rotationMatrix = np.asmatrix(((math.cos(rads),-1*math.sin(rads)),\
+                                     (math.sin(rads),math.cos(rads))))
         print(rotationMatrix)
 
         #Calculate the linear transformation
