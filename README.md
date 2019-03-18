@@ -3,7 +3,7 @@
 
 [![N|Solid](https://www.freeiconspng.com/uploads/letter-l-icon-png-28.png)=](http://www.numpy.org/)
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![Build Status](https://travis-ci.com/al2699/Linear.svg?branch=master)](https://travis-ci.com/al2699/Linear)
 
 Linear is a NumPy powered, linear transformation visualizer.
 
