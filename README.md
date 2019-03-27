@@ -17,7 +17,7 @@ Linear is a NumPy powered, linear transformation visualizer.
 
 [![Image from Gyazo](https://i.gyazo.com/418d448dfc35ee9f9a6f4c26e2ad4aa3.gif)](https://gyazo.com/418d448dfc35ee9f9a6f4c26e2ad4aa3)
 
-The x,y coordinates take are used for a vector:
+The X coordinate and Y coordinate take are used for a vector:
 
 [![Image from Gyazo](https://i.gyazo.com/86bbe87532bdd9e7fdecb41ac9c87ab8.png)](https://gyazo.com/86bbe87532bdd9e7fdecb41ac9c87ab8)
 
